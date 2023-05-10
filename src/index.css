@@ -1,0 +1,104 @@
+:root {
+  --primary-color: #999;
+  --secondary-color: #fff;
+  --selected-color: #d4edda;
+  --selected-hover-color: #c3e6d9;
+  --winner-animation-duration: 1s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px "Century Gothic", Futura, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F3EFEF;
+  background-image: linear-gradient(135deg, #C3C3E5 10%, #ECEEF1 100%);
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+ol,
+ul {
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.square {
+  background: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  float: left;
+  font-size: 6vw;
+  font-weight: bold;
+  height: 6vw;
+  line-height: 6vw;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 6vw;
+  transition: all 0.2s ease-in-out;
+}
+
+.square:hover {
+  background: #f8f8f8;
+  cursor: pointer;
+}
+
+.square.selected {
+  background: var(--selected-color);
+}
+
+.square.selected:hover {
+  background: var(--selected-hover-color);
+}
+
+/* Adiciona animação para o vencedor */
+.winner {
+  animation: winner var(--winner-animation-duration) ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes winner {
+  0% {
+    background-color: var(--selected-color);
+    box-shadow: 0px 0px 10px var(--selected-color);
+  }
+  50% {
+    background-color: var(--selected-hover-color);
+    box-shadow: 0px 0px 20px var(--selected-hover-color);
+  }
+  100% {
+    background-color: var(--selected-color);
+    box-shadow: 0px 0px 10px var(--selected-color);
+  }
+}
+
+/* Fallback para a fonte do corpo */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  body {
+    font-family: "Century Gothic", "Futura", sans-serif;
+  }
+}
+
+@media print {
+  body {
+    font-family: serif;
+  }
+}
